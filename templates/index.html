@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Survival Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Titanic Survival Prediction</h1>
+        <form action="/predict" method="post">
+            <label>Passenger Class:</label>
+            <select name="Pclass" required>
+                <option value="1">1st Class</option>
+                <option value="2">2nd Class</option>
+                <option value="3">3rd Class</option>
+            </select>
+
+            <label>Sex:</label>
+            <select name="Sex" required>
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+            </select>
+
+            <label>Age:</label>
+            <input type="number" name="Age" placeholder="Enter Age" step="any" required>
+
+            <label>Number of Siblings/Spouses:</label>
+            <input type="number" name="SibSp" placeholder="0,1,2..." required>
+
+            <label>Number of Parents/Children:</label>
+            <input type="number" name="Parch" placeholder="0,1,2..." required>
+
+            <label>Fare:</label>
+            <input type="number" name="Fare" placeholder="Fare amount" step="any" required>
+
+            <label>Port of Embarkation:</label>
+            <select name="Embarked" required>
+                <option value="0">Cherbourg (C)</option>
+                <option value="1">Queenstown (Q)</option>
+                <option value="2">Southampton (S)</option>
+            </select>
+
+            <label>Title:</label>
+            <select name="Title" required>
+                <option value="0">Master</option>
+                <option value="1">Miss</option>
+                <option value="2">Mr</option>
+                <option value="3">Mrs</option>
+                <option value="4">Rare Title</option>
+            </select>
+
+            <button type="submit">Predict Survival</button>
+        </form>
+
+        {% if prediction_text %}
+            <h2>{{ prediction_text }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
